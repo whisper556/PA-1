@@ -1,0 +1,5 @@
+File Size	Transfer Time (s)	Status
+1M	0.25	Success
+10M	1.57	Success
+50M	6.78	Success
+100M	13.45	Success

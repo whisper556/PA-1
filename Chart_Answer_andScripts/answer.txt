@@ -1,0 +1,6 @@
+Transfer of 100 MB file
+
+Time required: 13.45 seconds
+
+Main bottleneck: Disk I/O and pipe throughput. The client reads 100 MB from disk and the server writes 100 MB to disk, disk speed can have an effect on how fast it runs. The main bottleneck however, is most likely the pipe throughput. Pipes transfer data in chunks which are buffered, if the buffer size is small then the transfers are slow because a lot of system calls are needed.
+
