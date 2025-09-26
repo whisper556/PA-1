@@ -61,7 +61,6 @@ int main (int argc, char *argv[]) {
 	
     pid_t pid = fork();
     if (pid == 0) {
-        // child process -> run the server
         char *args[] = {(char*)"./server", NULL};
         execvp(args[0], args);
         cerr << "Error executing server" << endl;
@@ -110,7 +109,6 @@ int main (int argc, char *argv[]) {
 
 	}
 	else if (p != -1) {
-		// 2) First 1000 data points for ECG1 and ECG2 -> x1.csv
 		ofstream fout("received/x1.csv", ios::binary);
 		if (!fout) { cerr << "Cannot create x1.csv\n"; return 1; }
 
@@ -171,35 +169,6 @@ int main (int argc, char *argv[]) {
 		delete[] buf2;
 		delete[] buf3;
 	}
-
-
-
-
-    
-	
-	/* // example data point request
-    char buf[MAX_MESSAGE]; // 256
-    datamsg x(p, t, e);
-	
-	memcpy(buf, &x, sizeof(datamsg));
-	chan.cwrite(buf, sizeof(datamsg)); // question
-	double reply;
-	chan.cread(&reply, sizeof(double)); //answer
-	cout << "For person " << p << ", at time " << t << ", the value of ecg " << e << " is " << reply << endl;
-	
-    // sending a non-sense message, you need to change this
-	filemsg fm(0, 0);
-	string fname = "teslkansdlkjflasjdf.dat";
-	
-	int len = sizeof(filemsg) + (fname.size() + 1);
-	char* buf2 = new char[len];
-	memcpy(buf2, &fm, sizeof(filemsg));
-	strcpy(buf2 + sizeof(filemsg), fname.c_str());
-	chan.cwrite(buf2, len);  // I want the file length;
-
-	delete[] buf2;
-	delete[] buf3;
-	 */
 
 
 	// closing the channels
